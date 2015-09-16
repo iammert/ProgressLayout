@@ -67,6 +67,21 @@ progressLayout.setProgressLayoutListener(new ProgressLayout.ProgressLayoutListen
 });
 ```
 
+# Gradle
+Add it to your project build.gradle
+```
+ repositories {
+     // ...
+     maven { url "https://jitpack.io" }
+ }
+```
+Add it to your app module build gradle.
+```
+dependencies {
+     compile 'com.github.iammert:ProgressLayout:a2ac196500'
+}
+```
+
 # Design
 
 I inspired from [this design](https://www.materialup.com/posts/android-player-playlist) which is designed by [Anatoly Nesterov](https://twitter.com/@Monadiform)
