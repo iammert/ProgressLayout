@@ -1,6 +1,8 @@
 # ProgressLayout
 Custom Progress Layout for Android
 
+[![Join the chat at https://gitter.im/iammert/ProgressLayout](https://img.shields.io/badge/GITTER-join%20chat-green.svg)](https://gitter.im/iammert/ProgressLayout)
+
 [Here is the youtube link](https://www.youtube.com/watch?v=emDViR9g5H4)
 
 ![](https://raw.githubusercontent.com/iammert/ProgressLayout/master/art/progress_layout_art.png "")
