@@ -41,6 +41,15 @@ progressLayout.stop();
 progressLayout.cancel();
 ```
 
+# Methods
+```java
+progressLayout.setMaxProgress(120);
+progressLayout.setCurrentProgress(64);
+boolean isPlaying = progressLayout.isPlaying();
+//If you dont want to auto progress and handle it yourself
+progressLayout.setAutoProgress(false);
+```
+
 # Listener
 ```java
 progressLayout.setProgressLayoutListener(new ProgressLayout.ProgressLayoutListener() {
