@@ -4,10 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import co.mobiwise.library.ProgressLayout;
+import co.mobiwise.library.ProgressLayoutListener;
 
-/**
- * Created by mertsimsek on 16/09/15.
- */
 public class BasicUsageActivity extends AppCompatActivity{
 
     @Override
@@ -16,7 +14,7 @@ public class BasicUsageActivity extends AppCompatActivity{
         setContentView(R.layout.usage);
 
         ProgressLayout progressLayout = (ProgressLayout) findViewById(R.id.progressLayout);
-        progressLayout.setProgressLayoutListener(new ProgressLayout.ProgressLayoutListener() {
+        progressLayout.setProgressLayoutListener(new ProgressLayoutListener() {
             @Override
             public void onProgressCompleted() {
                 //TODO completed

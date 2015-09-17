@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import co.mobiwise.library.ProgressLayoutListener;
 import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -145,7 +146,7 @@ public class RecylerListAdapter extends RecyclerView.Adapter<RecylerListAdapter.
                 }
             }
         });
-        viewHolder.progressLayout.setProgressLayoutListener(new ProgressLayout.ProgressLayoutListener() {
+        viewHolder.progressLayout.setProgressLayoutListener(new ProgressLayoutListener() {
             @Override
             public void onProgressCompleted() {
                 viewHolder.imageViewAction.setBackgroundResource(R.drawable.play);

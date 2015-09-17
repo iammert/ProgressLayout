@@ -12,11 +12,6 @@ import android.view.View;
 
 public class ProgressLayout extends View {
 
-    public interface ProgressLayoutListener{
-        void onProgressCompleted();
-        void onProgressChanged(int seconds);
-    }
-
     private ProgressLayoutListener progressLayoutListener;
 
     private Paint paintProgressLoaded;
