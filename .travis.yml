@@ -15,4 +15,4 @@ android:
     - android-sdk-license-.+
 
 script:
-  ./gradlew checkstyle build
+    ./gradlew checkstyle build
