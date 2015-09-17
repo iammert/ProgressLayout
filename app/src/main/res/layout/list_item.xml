@@ -1,12 +1,19 @@
-<co.mobiwise.library.ProgressLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/progressLayout"
     android:layout_width="match_parent"
     app:maxProgress="100"
     app:autoProgress="true"
     app:emptyColor="#152430"
     android:layout_height="80dp">
+
+    <co.mobiwise.library.ProgressLayout
+        android:id="@+id/progressLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:maxProgress="100"
+        app:autoProgress="true"
+        app:emptyColor="#152430"/>
 
     <ImageView
         android:id="@+id/imageviewAction"
@@ -53,4 +60,4 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="24dp"/>
 
-</co.mobiwise.library.ProgressLayout>
+</RelativeLayout>

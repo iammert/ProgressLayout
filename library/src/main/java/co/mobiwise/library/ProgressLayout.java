@@ -8,12 +8,9 @@ import android.graphics.Paint;
 import android.os.Build;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.widget.RelativeLayout;
+import android.view.View;
 
-/**
- * Created by mertsimsek on 16/09/15.
- */
-public class ProgressLayout extends RelativeLayout{
+public class ProgressLayout extends View {
 
     public interface ProgressLayoutListener{
         void onProgressCompleted();
@@ -116,10 +113,8 @@ public class ProgressLayout extends RelativeLayout{
         };
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
         mWidth = MeasureSpec.getSize(widthMeasureSpec);
         mHeight = MeasureSpec.getSize(heightMeasureSpec);
     }

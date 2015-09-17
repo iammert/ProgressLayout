@@ -201,7 +201,7 @@ public class RecylerListAdapter extends RecyclerView.Adapter<RecylerListAdapter.
 
         public ViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }
