@@ -20,12 +20,13 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.drawable.Animatable;
 import android.os.Build;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class ProgressLayout extends View {
+public class ProgressLayout extends View implements Animatable {
 
     private static final int COLOR_EMPTY_DEFAULT = 0x00000000;
     private static final int COLOR_LOADED_DEFAULT = 0x11FFFFFF;
@@ -43,19 +44,16 @@ public class ProgressLayout extends View {
     private int maxProgress;
     private int currentProgress = 0;
 
-    private Handler mHandlerProgress;
-    private Runnable mRunnableProgress;
+    private Handler handlerProgress;
 
     private ProgressLayoutListener progressLayoutListener;
 
     public ProgressLayout(Context context) {
-        super(context);
-        init(context, null);
+        this(context, null);
     }
 
     public ProgressLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init(context, attrs);
+        this(context, attrs, 0);
     }
 
     public ProgressLayout(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -69,8 +67,25 @@ public class ProgressLayout extends View {
         init(context, attrs);
     }
 
-    private void init(Context context, AttributeSet attrs){
+    @Override public boolean isRunning() {
+        return isPlaying;
+    }
 
+    @Override public void start() {
+        if(isAutoProgress){
+            isPlaying = true;
+            handlerProgress.removeCallbacksAndMessages(null);
+            handlerProgress.postDelayed(mRunnableProgress, 0);
+        }
+    }
+
+    @Override public void stop(){
+        isPlaying = false;
+        handlerProgress.removeCallbacks(mRunnableProgress);
+        postInvalidate();
+    }
+
+    private void init(Context context, AttributeSet attrs) {
         setWillNotDraw(false);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.progressLayout);
         isAutoProgress = a.getBoolean(R.styleable.progressLayout_autoProgress, true);
@@ -90,30 +105,7 @@ public class ProgressLayout extends View {
         paintProgressLoaded.setStyle(Paint.Style.FILL);
         paintProgressLoaded.setAntiAlias(true);
 
-        mHandlerProgress = new Handler();
-
-        mRunnableProgress = new Runnable() {
-            @Override
-            public void run() {
-                if (isPlaying) {
-
-                    if(currentProgress == maxProgress){
-                        if(progressLayoutListener != null)
-                            progressLayoutListener.onProgressCompleted();
-                        currentProgress = 0;
-                        setCurrentProgress(currentProgress);
-                        stop();
-                    }
-                    else{
-                        postInvalidate();
-                        currentProgress += 1;
-                        if(progressLayoutListener != null)
-                            progressLayoutListener.onProgressChanged(currentProgress / 10);
-                        mHandlerProgress.postDelayed(mRunnableProgress, PROGRESS_SECOND_MS / 10);
-                    }
-                }
-            }
-        };
+        handlerProgress = new Handler();
     }
 
     @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -125,7 +117,6 @@ public class ProgressLayout extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         canvas.drawRect(0, 0, mWidth, mHeight, paintProgressEmpty);
         canvas.drawRect(0, 0, calculatePositionIndex(currentProgress), mHeight, paintProgressLoaded);
     }
@@ -138,24 +129,10 @@ public class ProgressLayout extends View {
         return isPlaying;
     }
 
-    public void start(){
-        if(isAutoProgress){
-            isPlaying = true;
-            mHandlerProgress.removeCallbacksAndMessages(null);
-            mHandlerProgress.postDelayed(mRunnableProgress, 0);
-        }
-    }
-
-    public void stop(){
-        isPlaying = false;
-        mHandlerProgress.removeCallbacks(mRunnableProgress);
-        postInvalidate();
-    }
-
     public void cancel(){
         isPlaying = false;
         currentProgress = 0;
-        mHandlerProgress.removeCallbacks(mRunnableProgress);
+        handlerProgress.removeCallbacks(mRunnableProgress);
         postInvalidate();
     }
 
@@ -176,4 +153,27 @@ public class ProgressLayout extends View {
     public void setProgressLayoutListener(ProgressLayoutListener progressLayoutListener){
         this.progressLayoutListener = progressLayoutListener;
     }
+
+    private final Runnable mRunnableProgress = new Runnable() {
+        @Override public void run() {
+            if (isPlaying) {
+                if(currentProgress == maxProgress){
+                    if(progressLayoutListener != null) {
+                        progressLayoutListener.onProgressCompleted();
+                    }
+                    currentProgress = 0;
+                    setCurrentProgress(currentProgress);
+                    stop();
+                } else {
+                    postInvalidate();
+                    currentProgress += 1;
+                    if(progressLayoutListener != null) {
+                        progressLayoutListener.onProgressChanged(currentProgress / 10);
+                    }
+                    handlerProgress.postDelayed(mRunnableProgress, PROGRESS_SECOND_MS / 10);
+                }
+            }
+        }
+    };
+
 }
