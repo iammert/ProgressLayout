@@ -1,3 +1,18 @@
+/*
+* Copyright (C) 2015 Mert Şimşek
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
 package co.mobiwise.library;
 
 import android.annotation.TargetApi;
@@ -8,45 +23,30 @@ import android.graphics.Paint;
 import android.os.Build;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.widget.RelativeLayout;
+import android.view.View;
 
-/**
- * Created by mertsimsek on 16/09/15.
- */
-public class ProgressLayout extends RelativeLayout{
+public class ProgressLayout extends View {
 
-    public interface ProgressLayoutListener{
-        void onProgressCompleted();
-        void onProgressChanged(int seconds);
-    }
-
-    private ProgressLayoutListener progressLayoutListener;
-
-    private Paint paintProgressLoaded;
-
-    private Paint paintProgressEmpty;
-
-    private static int COLOR_EMPTY_DEFAULT = 0x00000000;
-
-    private static int COLOR_LOADED_DEFAULT = 0x11FFFFFF;
+    private static final int COLOR_EMPTY_DEFAULT = 0x00000000;
+    private static final int COLOR_LOADED_DEFAULT = 0x11FFFFFF;
 
     private static int PROGRESS_SECOND_MS = 1000;
 
-    private int mHeight;
-
-    private int mWidth;
-
-    private int maxProgress;
-
-    private int currentProgress = 0;
-
-    private boolean isAutoProgress;
-
-    private Handler mHandlerProgress;
-
-    private Runnable mRunnableProgress;
+    private static Paint paintProgressLoaded;
+    private static Paint paintProgressEmpty;
 
     private boolean isPlaying = false;
+    private boolean isAutoProgress;
+
+    private int mHeight;
+    private int mWidth;
+    private int maxProgress;
+    private int currentProgress = 0;
+
+    private Handler mHandlerProgress;
+    private Runnable mRunnableProgress;
+
+    private ProgressLayoutListener progressLayoutListener;
 
     public ProgressLayout(Context context) {
         super(context);
@@ -116,10 +116,8 @@ public class ProgressLayout extends RelativeLayout{
         };
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
         mWidth = MeasureSpec.getSize(widthMeasureSpec);
         mHeight = MeasureSpec.getSize(heightMeasureSpec);
     }
