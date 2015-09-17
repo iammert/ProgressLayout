@@ -18,28 +18,25 @@ package co.mobiwise.progresslayout;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import butterknife.ButterKnife;
 import co.mobiwise.library.ProgressLayout;
 import co.mobiwise.library.ProgressLayoutListener;
 
-public class BasicUsageActivity extends AppCompatActivity{
+public class BasicUsageActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.usage);
+  @Override protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.usage);
+    ProgressLayout progressLayout = ButterKnife.findById(this, R.id.progressLayout);
+    progressLayout.setProgressLayoutListener(new ProgressLayoutListener() {
+      @Override public void onProgressCompleted() {
+        //TODO completed
+      }
 
-        ProgressLayout progressLayout = (ProgressLayout) findViewById(R.id.progressLayout);
-        progressLayout.setProgressLayoutListener(new ProgressLayoutListener() {
-            @Override
-            public void onProgressCompleted() {
-                //TODO completed
-            }
-
-            @Override
-            public void onProgressChanged(int seconds) {
-                //TODO progress seconds changed.
-            }
-        });
-        progressLayout.start();
-    }
+      @Override public void onProgressChanged(int seconds) {
+        //TODO progress seconds changed.
+      }
+    });
+    progressLayout.start();
+  }
 }
