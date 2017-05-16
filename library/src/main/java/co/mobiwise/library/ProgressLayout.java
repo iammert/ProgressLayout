@@ -25,7 +25,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 public class ProgressLayout extends View implements Animatable {
