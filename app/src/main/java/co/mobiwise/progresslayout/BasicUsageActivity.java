@@ -23,20 +23,25 @@ import co.mobiwise.library.ProgressLayout;
 import co.mobiwise.library.ProgressLayoutListener;
 
 public class BasicUsageActivity extends AppCompatActivity {
+    private final String TAG = "BasicUsageActivity";
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.usage);
-    ProgressLayout progressLayout = ButterKnife.findById(this, R.id.progressLayout);
-    progressLayout.setProgressLayoutListener(new ProgressLayoutListener() {
-      @Override public void onProgressCompleted() {
-        //TODO completed
-      }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.usage);
+        final ProgressLayout progressLayout = ButterKnife.findById(this, R.id.progressLayout);
+        progressLayout.setProgressLayoutListener(new ProgressLayoutListener() {
+            @Override
+            public void onProgressCompleted() {
+                //TODO completed
+            }
 
-      @Override public void onProgressChanged(int seconds) {
-        //TODO progress seconds changed.
-      }
-    });
-    progressLayout.start();
-  }
+            @Override
+            public void onProgressChanged(int seconds) {
+                //TODO progress seconds changed.
+
+            }
+        });
+        progressLayout.start();
+    }
 }

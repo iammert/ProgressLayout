@@ -28,7 +28,9 @@ Custom Progress Layout for Android
 app:maxProgress="100"
 app:autoProgress="true"
 app:emptyColor="#152430"
-app:loadedColor="#11FFFFFF"
+app:emptyAlphaRatio="1.0"
+app:progressColor="#ffffff"
+app:progressAlphaRatio="0.3"
 ...
 />
 ```
@@ -48,6 +50,12 @@ progressLayout.cancel();
 ```java
 progressLayout.setMaxProgress(120);
 progressLayout.setCurrentProgress(64);
+progressLayout.setColorEmpty(ContextCompat.getColor(this, R.color.color_white), 1.0f);
+progressLayout.setProgressColor(ContextCompat.getColor(this, R.color.ColorPrimary), 0.3f);
+progressLayout.getColorEmpty());
+progressLayout.getCurrentProgress());
+progressLayout.getMaxProgress());
+progressLayout.getProgressColor());
 boolean isPlaying = progressLayout.isPlaying();
 //If you dont want to auto progress and handle it yourself
 progressLayout.setAutoProgress(false);
