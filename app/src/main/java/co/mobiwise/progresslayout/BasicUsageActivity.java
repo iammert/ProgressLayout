@@ -23,7 +23,6 @@ import co.mobiwise.library.ProgressLayout;
 import co.mobiwise.library.ProgressLayoutListener;
 
 public class BasicUsageActivity extends AppCompatActivity {
-    private final String TAG = "BasicUsageActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
