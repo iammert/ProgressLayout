@@ -12,8 +12,8 @@ class Util {
      */
     static int getColorWithAlpha(@ColorInt int color, float ratio) {
         if (ratio < 0.0 || ratio > 1.0) {
-            throw new IllegalArgumentException("alphaColor must not be greater " +
-                    "than 1.0 or less than 0.0, you supplied " + ratio);
+            throw new IllegalArgumentException("alphaColor must not be greater "
+                    + "than 1.0 or less than 0.0, you supplied " + ratio);
         }
         int alpha = Math.round(Color.alpha(color) * ratio);
         int red = Color.red(color);

@@ -114,7 +114,8 @@ public class ProgressLayout extends View implements Animatable {
         isAutoProgress = a.getBoolean(R.styleable.progressLayout_autoProgress, true);
         maxProgress = a.getInt(R.styleable.progressLayout_maxProgress, 0);
         maxProgress = maxProgress * 10;
-        float progressAlphaRatio = a.getFloat(R.styleable.progressLayout_progressAlphaRatio, PROGRESS_ALPHA_COLOR_DEFAULT);
+        float progressAlphaRatio = a.getFloat(R.styleable.progressLayout_progressAlphaRatio,
+                PROGRESS_ALPHA_COLOR_DEFAULT);
         float emptyAlphaRatio = a.getFloat(R.styleable.progressLayout_emptyAlphaRatio, EMPTY_ALPHA_COLOR_DEFAULT);
         int progressColor = a.getColor(R.styleable.progressLayout_progressColor, COLOR_PROGRESS_DEFAULT);
         int emptyColor = a.getColor(R.styleable.progressLayout_emptyColor, COLOR_EMPTY_DEFAULT);
@@ -138,8 +139,8 @@ public class ProgressLayout extends View implements Animatable {
     }
 
     /**
-     * Indicate whether this progress layout is auto progressing. This is the same as {@link #isRunning()}. This will return false if
-     * {@link #setAutoProgress(boolean)} has not been set
+     * Indicate whether this progress layout is auto progressing. This is the same as {@link #isRunning()}.
+     * This will return false if {@link #setAutoProgress(boolean)} has not been set
      * @return true if it is auto progressing, false otherwise.
      */
     public boolean isPlaying() {
@@ -266,7 +267,8 @@ public class ProgressLayout extends View implements Animatable {
     }
 
     /**
-     * Gets the current progress. Except you're manually setting the progress yourself, this method is not needed. Rather you should use
+     * Gets the current progress. Except you're manually setting the progress yourself,
+     * this method is not needed. Rather you should use
      * {@link #setProgressLayoutListener(ProgressLayoutListener)}
      * @return the current progress
      */
