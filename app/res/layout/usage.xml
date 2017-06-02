@@ -13,6 +13,8 @@
         app:maxProgress="100"
         app:autoProgress="true"
         app:emptyColor="#152430"
+        app:progressColor="#ffffff"
+        app:progressAlphaRatio="0.3"
         android:layout_centerVertical="true"/>
 
 </RelativeLayout>

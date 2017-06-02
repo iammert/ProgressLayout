@@ -2,8 +2,10 @@
 <resources>
     <declare-styleable name="progressLayout">
         <attr name="emptyColor" format="color" />
-        <attr name="loadedColor" format="color" />
+        <attr name="progressColor" format="color" />
         <attr name="maxProgress" format="integer" />
         <attr name="autoProgress" format="boolean"/>
+        <attr name="progressAlphaRatio" format="float"/>
+        <attr name="emptyAlphaRatio" format="float"/>
     </declare-styleable>
 </resources>
